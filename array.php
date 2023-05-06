@@ -3,6 +3,8 @@
 //ancienne syntaxe
 $array = array("banane","cerise","fraise");
 
+//bonsoir je suis un commentaire heu
+
 //bonne syntaxe
 $array = ["banane","cerise","fraise"];
 
