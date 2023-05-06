@@ -3,6 +3,8 @@
 //ancienne syntaxe
 $array = array("banane","cerise","fraise");
 
+// GROSSE PATATA
+
 //bonne syntaxe
 $array = ["banane","cerise","fraise"];
 
