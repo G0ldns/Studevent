@@ -2,53 +2,45 @@
     session_start();
     require('actions/questions/showAllQuestionsAction.php');
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'includes/head.php'; ?>
-<body style="background-color:#7C00FF";>
-    <?php include 'includes/navbar.php'; ?>
-    <br><br>
-
-    <div class="container">
-    
-        <form method="GET">
-
-            <div class="form-group row">
-
-                <div class="col-8">
-                    <input type="search" name="search" class="form-control">
-                </div>
-                <div class="col-4">
-                    <button class="btn btn-success" type="submit">Rechercher</button>
-                </div>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="includes/css/index-style.css" />
+    </head>
+    <body>
+        <main>
+            <?php include 'includes/navbar.php';?>
+            <div class="index-bg"></div>
+            <div class="container">
+                <form method="GET">
+                    <div class="form-group row">
+                        <input type="search" name="search" class="search-input">
+                        <button class="search-button" type="submit">Rechercher</button>
+                    </div>
+                </form>
+                <?php while($question = $getAllQuestions->fetch()): ?>
+                    <div class="card">
+                        <div class="card-header question-header">
+                            <a href="article.php?id=<?= $question['id']; ?>">
+                                <?= $question['titre']; ?>
+                            </a>
+                        </div>
+                        <div class="card-body question-body">
+                            <?= $question['description']; ?>
+                        </div>
+                        <div class="card-footer question-footer">
+                            Publié par 
+                            <a href="profile.php?id=<?= $question['id_auteur']; ?>">
+                                <?= $question['pseudo_auteur']; ?>
+                            </a> le <?= $question['date_publication']; ?>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
             </div>
-        </form>
-
-        <br>
-
-        <?php 
-            while($question = $getAllQuestions->fetch()){
-                ?>
-                <div class="card">
-                    <div class="card-header" style="background-color:beige">
-                        <a href="article.php?id=<?= $question['id']; ?>">
-                            <?= $question['titre']; ?>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <?= $question['description']; ?>
-                    </div>
-                    <div class="card-footer">
-                        Publié par <a href="profile.php?id=<?= $question['id_auteur']; ?>"><?= $question['pseudo_auteur']; ?></a> le <?= $question['date_publication']; ?>
-                    </div>
-                </div>
-                <br>
-                <?php
-            }
-        ?>
-
-    </div>
-
-</body>
+        </main>    
+    </body>
 </html>

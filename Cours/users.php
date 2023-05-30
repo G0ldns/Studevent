@@ -11,6 +11,21 @@
 <html>
 <head>
     <link rel="stylesheet" type="" href="users.css">
+    <style>
+        
+        body {
+    font-family: Centaur;
+    background-color: beige;
+    padding: 30px;
+}
+
+h1 {
+
+    font-family: Bernard MT;
+
+}
+
+    </style>
 </head>
 
 <center><h1>Les utilisateurs</h1>

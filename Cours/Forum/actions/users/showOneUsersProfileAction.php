@@ -9,7 +9,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])){
     $idOfUser = $_GET['id'];
 
     //Vérifier si l'utilisateur existe
-    $checkIfUserExists = $bdd->prepare('SELECT pseudo, nom, prenom FROM users WHERE id = ?');
+    $checkIfUserExists = $bdd->prepare('SELECT pseudo, lastname, firstname FROM ".DB_PREFIX."user WHERE id = ?');
     $checkIfUserExists->execute(array($idOfUser));
 
     if($checkIfUserExists->rowCount() > 0){
@@ -18,8 +18,8 @@ if(isset($_GET['id']) AND !empty($_GET['id'])){
         $usersInfos = $checkIfUserExists->fetch();
 
         $user_pseudo = $usersInfos['pseudo'];
-        $user_lastname = $usersInfos['nom'];
-        $user_firstname = $usersInfos['prenom'];
+        $user_lastname = $usersInfos['lastname'];
+        $user_firstname = $usersInfos['firstname'];
 
         //Récupérer toutes les questions publiées par l'utilisateur
         $getHisQuestions = $bdd->prepare('SELECT * FROM questions WHERE id_auteur = ? ORDER BY id DESC');

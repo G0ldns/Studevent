@@ -9,19 +9,40 @@
 <html>
 <head>
     <link rel="stylesheet" type="" href="NewPassword.css">
+    <style>
+        
+        body {
+    font-family: Centaur;
+    background-color: beige;
+    padding: 30px;
+}
+
+h1 {
+
+    font-family: Bernard MT;
+
+}
+
+    </style>
 </head>
 
 <div class="">
     
     <?php
 
-//     if( !empty($_POST['email']) &&  !empty($_POST['pwd']) ){
+//if( !empty($_POST['email']) &&  !empty($_POST['pwd']) ){
 
     if( !empty($_POST['old_pwd']) && !empty($_POST['new_pwd']) && !empty($_POST['confirm_new_pwd'])){
 
-        $email = $_SESSION['email'];  // Récupère l'adresse email de l'utilisateur à partir de la sessionsession en cours
-        $old_pwd = $_POST["old_pwd"];// Récupère le champ "ancien mot de passe" soumis par l'utilisateur
-        $new_pwd = $_POST["new_pwd"];// Récupère le champ "nouveau mot de passe" soumis par l'utilisateur
+// Récupère l'adresse email de l'utilisateur de la session
+
+        $email = $_SESSION['email'];  
+// Récupère "ancien mot de passe" 
+
+        $old_pwd = $_POST["old_pwd"];
+// Récupère "nouveau mot de passe"
+        $new_pwd = $_POST["new_pwd"];
+
         $confirm_new_pwd = $_POST["confirm_new_pwd"];
 
 // POPUP suite à la modification du mot de passe échoué
@@ -31,25 +52,22 @@
             exit();
         }
 
-// Établit une connexion à la base de données en utilisant la fonction "connectDB" définie dans "functions.php"
+// Connexion à la DB avec "connectDB" définie dans "functions.php"
 
         $connect = connectDB();
 
-// Prépare une requête SQL pour récupérer le mot de passe actuel de l'utilisateur
+//Récupérer le mot de passe actuel de l'utilisateur
 
         $queryPrepared = $connect->prepare("SELECT pwd FROM ".DB_PREFIX."user WHERE email=:email");
 
-// Exécute la requête SQL en liant l'adresse email de l'utilisateur à la variable ":email"
+// Exécute l'adresse email de l'utilisateur à la variable ":email"
 
         $queryPrepared->execute(["email"=>$email]);
 
-// Récupère les résultats de la requête SQL sous forme de tableau
+// Récupère les résultats sous forme de tableau
             
         $results = $queryPrepared->fetch(); 
 
-     // Récupère les résultats de la requête SQL sous forme de tableau
-
-        $results = $queryPrepared->fetch();
 
         if(!empty($results) && password_verify($old_pwd, $results["pwd"]) ){
 

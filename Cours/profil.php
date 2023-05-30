@@ -14,6 +14,21 @@ include "template/header.php";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profil de <?= htmlspecialchars($user['pseudo']) ?></title>
     <link rel="stylesheet" type="" href="profil.css">
+    <style>
+        
+        body {
+    font-family: Centaur;
+    background-color: beige;
+    padding: 30px;
+}
+
+h1 {
+
+    font-family: Bernard MT;
+
+}
+
+    </style>
 </head>
 <body>
 
@@ -104,6 +119,7 @@ if(isset($_POST['submit'])){
 <p>
     <a href="NewPassword.php">Changer de mot de passe</a>
     </form>
+    <br>
     
 </body>
 </html>

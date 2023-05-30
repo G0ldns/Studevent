@@ -1,69 +1,20 @@
 body {
 	font-family: Arial, sans-serif;
+	padding: O;
+	font-display: felx;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: dark;
 }
 
-header {
-	background-color: rgb(235, 216, 167);
-	padding: 20px;
+h1 {
+
+	margin-top: 250px;
+	font-size: 80px;
 }
 
-nav ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
 
-nav li {
-	float: left;
-}
-
-nav li a {
-	display: block;
-	color: black;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-nav li a:hover {
-	background-color: #ddd;
-}
-
-main {
-	display: flex;
-	flex-wrap: wrap;
-	padding: 20px;
-}
-
-section {
-	flex: 3;
-	padding-right: 20px;
-}
-
-.comment {
-	background-color: #f2f2f2;
-	border: 1px solid #ddd;
-	padding: 20px;
-	margin-bottom: 20px;
-}
-
-aside {
-	flex: 1;
-}
-
-.rightboard {
-	background-color: #f2f2f2;
-	border: 1px solid #ddd;
-	padding: 20px;
-	margin-bottom: 20px;
-}
-
-footer {
-	background-color: rgb(235, 216, 167);
-	padding: 20px;
-	text-align: center;
-}
 
 /* POPUP INDEX*/
 
@@ -92,4 +43,22 @@ footer {
     text-align: center;
     line-height: 18px;
     cursor: pointer;
+}
+
+/* Dark mode*/
+
+.changeTheme {
+
+	cursor: pointer;
+	width: 200px;
+	height: 50px;
+	background: gray;
+	color: #f1f1f1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	border-radius: 5px;
+
+
 }

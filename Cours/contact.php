@@ -6,6 +6,26 @@ include "template/header.php";
 include "search.php";
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        
+        body {
+    font-family: Centaur;
+    background-color: beige;
+    padding: 30px;
+}
+
+h1 {
+
+    font-family: Bernard MT;
+
+}
+
+    </style>
+</head>
+<body>
 
 <div class="container">
     <div class="container mt-5">

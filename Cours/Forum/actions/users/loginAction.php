@@ -6,40 +6,41 @@ require('actions/database.php');
 if(isset($_POST['validate'])){
 
     //Vérifier si l'user a bien complété tous les champs
-    if(!empty($_POST['email']) AND !empty($_POST['pwd'])){
-        
-        //Les données de l'user
-        $email = htmlspecialchars($_POST['email']);
-        $pwd = htmlspecialchars($_POST['pwd']);
+    if(!empty($_POST['email']) AND !empty($_POST['password'])){
 
-        //Vérifier si l'utilisateur existe (si le email est correct)
-        $checkIfUserExists = $bdd->prepare('SELECT * FROM esgi_user WHERE email = ?');
-        $checkIfUserExists->execute(array($email));
+        //Les données de l'user
+        $user_email = htmlspecialchars($_POST['email']);
+        $user_password = htmlspecialchars($_POST['password']);
+
+        //Vérifier si l'utilisateur existe (si le pseudo est correct)
+        $checkIfUserExists = $bdd->prepare('SELECT * FROM ".DB_PREFIX."user WHERE email = ?');
+        $checkIfUserExists->execute(array($user_email));
 
         if($checkIfUserExists->rowCount() > 0){
-            
+
             //Récupérer les données de l'utilisateur
-            $esgi_userInfos = $checkIfUserExists->fetch();
+            $usersInfos = $checkIfUserExists->fetch();
 
             //Vérifier si le mot de passe est correct
-            if(pwd_verify($pwd, $esgi_userInfos['mdp'])){
-            
+            if(password_verify($user_password, $usersInfos['mdp'])){
+
                 //Authentifier l'utilisateur sur le site et récupérer ses données dans des variables globales sessions
                 $_SESSION['auth'] = true;
-                $_SESSION['id'] = $esgi_userInfos['id'];
-                $_SESSION['lastname'] = $esgi_userInfos['nom'];
-                $_SESSION['firstname'] = $esgi_userInfos['prenom'];
-                $_SESSION['email'] = $esgi_userInfos['email'];
+                $_SESSION['id'] = $usersInfos['id'];
+                $_SESSION['lastname'] = $usersInfos['nom'];
+                $_SESSION['firstname'] = $usersInfos['prenom'];
+                $_SESSION['pseudo'] = $usersInfos['pseudo'];
+                $_SESSION['email'] = $usersInfos['email'];
 
                 //Rediriger l'utilisateur vers la page d'accueil
                 header('Location: index.php');
-    
+
             }else{
                 $errorMsg = "Votre mot de passe est incorrect...";
             }
 
         }else{
-            $errorMsg = "Votre email est incorrect...";
+            $errorMsg = "Votre pseudo est incorrect...";
         }
 
     }else{

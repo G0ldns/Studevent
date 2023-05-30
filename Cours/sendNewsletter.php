@@ -5,82 +5,50 @@ require 'core/PHPMailer/class.phpmailer.php';
 require 'core/PHPMailer/class.smtp.php';
 require "conf.inc.php";
 require "core/functions.php";
-include "template/header.php";
 
 $connect = connectDB();
+$newsletterId = $_GET['newsletter_id'];
+// Connexion à la base de données
+$conn = connectDB();
 
-// Get the user's details
-$queryPrepared = $connect->prepare("SELECT email, firstname, lastname, pseudo FROM ".DB_PREFIX."user WHERE email=:email");
-$queryPrepared->execute(["email"=>$_SESSION['email']]);
-$user = $queryPrepared->fetch();
+// Récupération des informations de la newsletter
+$sql = "SELECT * FROM gestion_newsletter WHERE id = :newsletterId";
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':newsletterId', $newsletterId);
+$stmt->execute();
+$newsletter = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// If the user has submitted the subscription form
-if (isset($_POST['newsletter'])) {
-    // Get the form data
-    $email = $_POST['email'];
-
-    // Check if the email is already subscribed
-    $stmt = $connect->prepare("SELECT COUNT(*) FROM newsletter WHERE email = :email");
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    $result = $stmt->fetchColumn();
-
-    if ($result > 0) {
-        // Show a message that the email is already subscribed
-        echo "This email is already subscribed!";
-    } else {
-        // Insert the subscriber details into the database
-        $stmt = $connect->prepare("INSERT INTO newsletter (email) VALUES (:email)");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-        // Show a success message
-        echo "Thank you for subscribing!";
-    }
+// Vérifier si la newsletter existe
+if (!$newsletter) {
+    echo "Newsletter non trouvée.";
+    exit;
 }
 
-// If the user has submitted the unsubscription form
-if (isset($_POST['unsubscribe'])) {
-    // Get the form data
-    $email = $_POST['email'];
-
-    // Delete the subscriber from the database
-    $stmt = $connect->prepare("DELETE FROM newsletter WHERE email = :email");
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-
-    // Show a success message
-    echo "You have been unsubscribed!";
-}
-
-// Get the list of subscribers from the database
+// récupère la liste de la base de données
 $stmt = $connect->query("SELECT email FROM newsletter");
 
-// Loop through the results and send emails to subscribers
+// boucle while pour envoyer les e-mails à tous les utilisateurs
 while ($subscriber = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $mail = new PHPMailer(true);
 
-     try {
+    try {
         $mail->SMTPDebug = 0;
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'studvent.contact@gmail.com';
-        $mail->Password = 'ypxawlkusqxjjyxa';
+        $mail->Username = 'studevent.officiel@gmail.com';
+        $mail->Password = 'sblxxnsotixbycxj';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('studvent.contact@gmail.com', 'studevent contact');
+        $mail->setFrom('studevent.officiel@gmail.com', 'STUDEVENT CONTACT');
         $mail->addAddress($subscriber['email'], $subscriber['firstname'] . ' ' . $subscriber['lastname']);
         $mail->isHTML(true);
-        $mail->Subject = 'Confirmation de votre inscription';
-        $mail->Body = '<p>Bonjour ' . $subscriber['pseudo'] . ',</p>
-                       <p>Veuillez cliquer sur le lien suivant pour confirmer votre inscription :</p>
-                       <p><a href="https://www.example.com/confirm.php?email=' . $subscriber['email'] . '">https://www.example.com/confirm.php?email=' . $subscriber['email'] . '</a></p>
-                       <p>A bientôt sur notre site !</p>';
+        $mail->Subject = $newsletter['subject'];
+        $mail->Body = $newsletter['content'];
 
         $mail->send();
     } catch (Exception $e) {
-        // Handle exceptions here
+        // Gérer les exceptions ici
     }
 }

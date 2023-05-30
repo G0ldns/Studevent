@@ -4,6 +4,19 @@ function helloWorld(){
 	echo "Hello World";
 }
 
+function cleanInput($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+// Admin
+
+function isAdmin($user) {
+    return $user['role'] === 'admin';
+}
+
 // Prénom
 
 function cleanFirstname($firstName){
@@ -62,9 +75,4 @@ function redirectIfNotConnected(){
 	if(!isConnected()){
 		header("Location: login.php");
 	}
-}
-
-function generateToken() {
-    $token = bin2hex(random_bytes(32));
-    return $token;
 }

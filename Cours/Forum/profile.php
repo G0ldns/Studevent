@@ -5,9 +5,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'includes/head.php'; ?>
-<body style="background-color:royalblue";>
+<body style="background:linear-gradient(97.27deg, #f07320 8.3%, #ff9721 90%);";>
     <?php include 'includes/navbar.php'; ?>
-    <br><br>
 
     <div class="container">
         <?php 

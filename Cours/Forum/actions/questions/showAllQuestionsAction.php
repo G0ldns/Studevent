@@ -3,6 +3,7 @@
 require('actions/database.php');
 
 //Récupérer les questions par défaut sans recherche
+$bdd = connectDB();
 $getAllQuestions = $bdd->query('SELECT id, id_auteur, titre, description, pseudo_auteur, date_publication FROM questions ORDER BY id DESC LIMIT 0,5');
 
 //Vérifier si une recherche a été rentrée par l'utlisateur

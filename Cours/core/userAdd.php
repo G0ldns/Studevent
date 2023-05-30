@@ -157,38 +157,35 @@ if(empty($listOfErrors)){
 
 
 // Envoi du mail de confirmation
-$mail = new PHPMailer(true); // create a new object
+	
+$mail = new PHPMailer(true); 
 try {
 
-    $mail->SMTPDebug = 0; // Enable verbose debug output
-    $mail->isSMTP(); // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true; // Enable SMTP authentication
-    $mail->Username = 'studvent.contact@gmail.com'; // SMTP username
-    $mail->Password = 'ypxawlkusqxjjyxa'; // SMTP password
-    $mail->SMTPSecure = 'tls'; // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587; // TCP port to connect to
-
-    $mail->setFrom('studvent.contact@gmail.com', 'studevent contact');
-    $mail->addAddress($email, $firstname . ' ' . $lastname); // Add a recipient
-    $mail->isHTML(true); // Set email format to HTML
+    $mail->SMTPDebug = 0; 
+    $mail->isSMTP(); 
+    $mail->Host = 'smtp.gmail.com'; 
+    $mail->SMTPAuth = true; 
+    $mail->Username = 'studevent.officiel@gmail.com'; 
+    $mail->Password = 'sblxxnsotixbycxj'; 
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587; 
+    $mail->setFrom('studevent.officiel@gmail.com', 'STUDEVENT CONTACT');
+    $mail->addAddress($email, $firstname . ' ' . $lastname); 
+    $mail->isHTML(true);
     $mail->Subject = 'Confirmation de votre inscription';
     $mail->Body = '<p>Bonjour ' . $pseudo . ',</p>
                    <p>Veuillez cliquer sur le lien suivant pour confirmer votre inscription :</p>
-			  
-			<p><a href="http://localhost/projet%20WEB%201A2/Cours/core/confirm.php?token=' . $token . '">Activation</a></p>
 
-
+               <p><a href="http://localhost/projet%20WEB%201A2/Cours/core/confirm.php?token=' . $token . '">Activation</a></p>
 
 
                    <p>A bientôt sur notre site !</p>';
-    
+
     $mail->send();
     echo 'Un email de confirmation a été envoyé à l\'adresse ' . $email . '. Veuillez cliquer sur le lien dans l\'email pour confirmer votre inscription.';
 } catch (Exception $e) {
     echo 'Une erreur est survenue lors de l\'envoi de l\'email : ' . $mail->ErrorInfo;
 }
-
 
 		$queryPrepared->execute([
 		                            "gender"=>$gender,

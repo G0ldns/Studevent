@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 04 mai 2023 à 01:07
+-- Généré le : dim. 07 mai 2023 à 22:52
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -67,7 +67,12 @@ INSERT INTO `answers` (`id`, `id_auteur`, `pseudo_auteur`, `id_question`, `conte
 (25, 8, 'Chad', 5, 'écoute pas les rageux ╰(*°▽°*)╯????'),
 (26, 9, 'sergentkarotte', 5, 'teub'),
 (27, 9, 'sergentkarotte', 11, 'grosse clakos<br />\r\n'),
-(28, 10, 'proutt', 12, 'brfbgbrf');
+(28, 10, 'proutt', 12, 'brfbgbrf'),
+(29, 11, 'win', 13, 'chfcgbnfcg'),
+(30, 11, 'win', 12, 'idk'),
+(31, 11, 'win', 14, 'sananes'),
+(32, 11, 'win', 4, 'c&#039;est vrai'),
+(33, 11, 'win', 15, 'sananes');
 
 -- --------------------------------------------------------
 
@@ -122,7 +127,8 @@ INSERT INTO `users` (`id`, `pseudo`, `nom`, `prenom`, `mdp`) VALUES
 (7, 'chris', 'chris', 'chris', '$2y$10$GvGvGL.X/5dudPs/4Vmx.OUupcc8JKWzJes.nOTTgmCHDAAHexJnK'),
 (8, 'Chad', 'Erard', 'delomon', '$2y$10$QMimup9UiXqjWt304yIVEe1DcMDhGqvI8PGG5oj0sqcQD7moZWC0W'),
 (9, 'sergentkarotte', 'marlon', 'clément', '$2y$10$E23e144Ce6YGjPqivhyzyeC8I3asoS5GZTnZx.rn9pYqLNZlBuEMS'),
-(10, 'proutt', 'bruce', 'orc&#039;est', '$2y$10$mxdu2z93zu1qN1shAnzncOIUutg3lPFuEFuIte3AAoIqWkYlbUAwO');
+(10, 'proutt', 'bruce', 'orc&#039;est', '$2y$10$mxdu2z93zu1qN1shAnzncOIUutg3lPFuEFuIte3AAoIqWkYlbUAwO'),
+(11, 'win', 'tagueule', 'delon', '$2y$10$4zBwQ.Yg5TO/UqMXo3/.M.kMgPBs4XE5o0t/nznF526DXPm1d7BDa');
 
 --
 -- Index pour les tables déchargées
@@ -154,19 +160,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT pour la table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

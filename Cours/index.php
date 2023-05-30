@@ -7,37 +7,6 @@ include "search.php";
 
 ?>
 
-
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="" href="style.css">
-     <style>
-    h1 {
-      text-align: center;
-      font-size: 36px;
-      color: #333;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 1.5;
-      text-align: justify;
-      padding: 0 20px;
-    }
-  </style>
-</head>
-<script>
-	
-// Fonction pour le POPUP de index
-function closeMessageBox() {
-    document.getElementById('messageBox').style.display = 'none';
-}
-
-
-
-</script>
-
 <?php 
 
 // POPUP qui s'affiche suite à la connexion et qui est fermable 
@@ -59,8 +28,42 @@ function closeMessageBox() {
     }
 
 ?>
-	<h1>Welcome</h1>
 
+<script>
+		
+		// Fonction pour le POPUP de index
+		function closeMessageBox() {
+		    document.getElementById('messageBox').style.display = 'none';
+		}
+		
+	</script>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="" href="style.css">
+    <style>
+        
+        body {
+    font-family: Centaur;
+    background-color: beige;
+    padding: 30px;
+}
+
+h1 {
+
+    font-family: Bernard MT;
+
+}
+
+
+
+    </style>
+</head>
+<body>
+	
+	<img style=" width: 100%; height: 80%;"src="assets/STUDEVENT.jpg">
 
 	
 
@@ -77,7 +80,8 @@ STUDEVENT ne se limite pas à un simple réseau social, nous sommes également u
 Rejoignez-nous dès maintenant et faites partie de la communauté STUDEVENT. Créez votre profil, ajoutez des amis, participez à des groupes de discussion, écrivez des articles et explorez notre vaste sélection d'événements. STUDEVENT est votre porte d'entrée vers une expérience étudiante enrichissante et inoubliable.</p>
 
 
-
+</body>
+</html>
 <?php include "template/footer.php";?>
 <?php include "codeLogs.php";?>
 

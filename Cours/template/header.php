@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/Log PAsf.jpg" />
   <title>STUDEVENT</title>
-  <meta name="description" content="super site en php">
+  <meta name="description" content="STUDEVENT">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
 </head>
@@ -40,10 +42,13 @@
           <a class="nav-link" href="#">Evenement</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Forum</a>
+          <a class="nav-link" href="Forum/index.php">Forum</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="contact.php">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="newsletter.php">Newsletter</a>
         </li>
 
 

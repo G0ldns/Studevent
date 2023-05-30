@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'includes/head.php'; ?>
-<body style="background-color:aqua";>
+<body style="background:linear-gradient(97.27deg, #F7C23B 0%, #E93D57 51.07%, #A423BA 100%);";>
     <?php include 'includes/navbar.php'; ?>
 
     <br><br>

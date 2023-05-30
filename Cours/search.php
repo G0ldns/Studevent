@@ -1,6 +1,24 @@
 <?php
+// Démarrer la session si elle n'a pas déjà été démarrée
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
+// inclure les fichiers nécessaires
+require_once "conf.inc.php";
+require_once "core/functions.php";
+include_once "template/header.php";
+
+// vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['email'])) {
+    // si l'utilisateur n'est pas connecté, le rediriger vers la page de connexion
+    header("Location: login.php");
+    exit();
+}
+
+// afficher le formulaire de recherche
 if (isset($_POST['search'])) {
+    // exécuter la recherche et enregistrer les résultats dans une variable de session
     $search_query = $_POST['search_query'];
     $current_user_email = $_SESSION['email'];
     $connect = connectDB();
@@ -8,27 +26,31 @@ if (isset($_POST['search'])) {
     $queryPrepared->execute(['search_query' => '%' . $search_query . '%', 'current_user_email' => $current_user_email]);
     $results = $queryPrepared->fetchAll();
 
-    // check if any results were found
+    // vérifier si des résultats ont été trouvés
     if (count($results) > 0) {
-        // encode the results in JSON format
+        // encoder les résultats au format JSON et enregistrer dans une variable de session
         $json_results = json_encode($results);
-        // set a session variable to hold the search results
         $_SESSION['search_results'] = $json_results;
     } else {
         $_SESSION['search_results'] = "No results found.";
     }
 
-    // redirect the user to rechercheUser.php
+    // rediriger l'utilisateur vers la page des résultats de recherche
     header("Location: searchUser.php");
     exit();
 }
-
-$pdo = null;
-
 ?>
 
-<!-- HTML form with the search bar -->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="search.css">
+</head>
+
+<!-- Formulaire HTML avec la barre de recherche -->
 <form method="post">
-    <center><input type="text" name="search_query">
+    <center><input type="text" name="search_query" placeholder="Recherche ..." >
     <input type="submit" name="search" value="Search"></center>
 </form>
+
+

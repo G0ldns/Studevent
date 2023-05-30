@@ -1,0 +1,32 @@
+form {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 10px;
+  width: 300px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #1111;
+}
+
+input[type="submit"] {
+  background-color: #9999;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+input[type="submit"]:hover {
+  background-color: #0062cc;
+}

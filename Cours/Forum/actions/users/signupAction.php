@@ -4,7 +4,7 @@ require('actions/database.php');
 
 //Validation du formulaire
 if(isset($_POST['validate'])){
-
+    $bdd = connectDB();
     //Vérifier si l'user a bien complété tous les champs
     if(!empty($_POST['pseudo']) AND !empty($_POST['lastname']) AND !empty($_POST['firstname']) AND !empty($_POST['password'])){
         
@@ -15,7 +15,7 @@ if(isset($_POST['validate'])){
         $user_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         //Vérifier si l'utilisateur existe déjà sur le site
-        $checkIfUserAlreadyExists = $bdd->prepare('SELECT pseudo FROM users WHERE pseudo = ?');
+        $checkIfUserAlreadyExists = $bdd->prepare('SELECT pseudo FROM ".DB_PREFIX."user WHERE pseudo = ?');
         $checkIfUserAlreadyExists->execute(array($user_pseudo));
 
         if($checkIfUserAlreadyExists->rowCount() == 0){
